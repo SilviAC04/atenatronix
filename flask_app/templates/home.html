@@ -17,13 +17,23 @@
                             <div class="col-md-9 col-lg-8 mx-auto">
                                 <h3 class="login-heading mb-4">¡Bienvenido!</h3>
                                     <!-- Sign In Form -->
-                                    <form>
+                                    <form action="/login", method = "post">
+                                        {% with messages = get_flashed_messages(category_filter=['login']) %}
+                                            {% if messages %}
+                                            <div class="alert alert-danger" role="alert">
+                                                <strong>Tenemos un problema ...</strong>
+                                                    {% for message in messages %}
+                                                    <p>{{message}}</p>
+                                                    {% endfor %}
+                                            </div>
+                                            {% endif %}
+                                        {% endwith %}
                                         <div class="form-floating mb-3">
-                                            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                                            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
                                             <label for="floatingInput">Email</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                                            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                                             <label for="floatingPassword">Contraseña</label>
                                         </div>
                         
@@ -40,7 +50,9 @@
                                             <a class="small" href="#">¿Olvidó su contraseña?</a>
                                             </div>
                                         </div>
-                        
+                                        <div class="d-grid">
+                                            <a href="/registrar" class="btn btn-lg btn-dark btn-login text-uppercase fw-bold mt-2">Registrarse</a>
+                                        </div>
                                     </form>
                             </div>
                         </div>

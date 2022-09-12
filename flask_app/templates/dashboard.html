@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}
+    AtenaDashboard
+{% endblock %}
+
+{% block content %}
+<!-- Sidebar -->
+<div class="d-flex flex-row">
+    <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark">
+        <ul class="nav nav-pills flex-column mb-auto">
+            <li class="nav-item">
+                <a href="#" class="nav-link text-white" aria-current="page">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link text-white" aria-current="page">Compras</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link text-white" aria-current="page">Clientes</a>
+            </li>
+        </ul>
+    </div>
+    <div class="d-flex flex-column flex-grow">
+        <h3 class="text-start p-3">Bienvenido {{this_user.first_name}}</h2>
+    </div>
+</div>
+{% endblock %}
