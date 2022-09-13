@@ -6,7 +6,7 @@ values ('Silvana', 'Arevalo', 'silvi.arevalo@udla.edu.ec', '0401314561', 2, 1,1)
 
 delete  from users where users.id=2; 
 
-insert into users_types (description) values ('administrador'), ('cliente'), ('vendedor');
+insert into users_types (description) values ('Administrador'), ('Cliente'), ('Vendedor');
 select * from users_types;
 
 insert into empresas (name, ruc, direccion_id) values ('INDEPENDIENTE', '9999999999001', 1), 
@@ -25,12 +25,20 @@ insert into paises_fabricantes (nombre_pais) values ('ALEMANIA'), ('FRANCIA'), (
 select * from paises_fabricantes;
 
 select * from product_types;
-insert into product_types (descripcion) values ('CONTACTOR'), ('ACCIONAMIENTOS DE VELOCIDAD VARIABLE'), ('AUTOMATIZACION'), ('ELECTRICIDAD BAJO VOLTAJE');
+insert into product_types (descripcion) values ('CONTROL INDUSTRIAL - MANIOBRA'), ('ACCIONAMIENTOS DE VELOCIDAD VARIABLE'), ('AUTOMATIZACION'), ('ELECTRICIDAD BAJO VOLTAJE');
 
 select * from fabricantes;
 insert into fabricantes (nombre, pais_fabricante_id) values ('SIEMENS', 1), ('SCHNEIDER', 1), ('ABB', 3);
 
-select * from products;
+select * from products limit 10;
+select product_type_id, count(*) from products group by products.product_type_id;
+select count(*) from products;
+
+delete from products where id=423;
+
+select products.id, product_types.descripcion as categoria, products.descripcion, products.precio from products 
+left join product_types on products.product_type_id=product_types.id
+limit 10;
 insert into products (codigo_fabricante, descripcion, precio, stock, product_type_id, fabricante_id, empresa_id) 
 values ('6SL3210-5BB13-7UV1', 'SINAMICS V20, 1AC 23', 311.00, 10, 2, 1, 2),
 ('6SL3210-5BB13-7UV1', 'CPU 1511-1PN, 150KB', 1942.00, 2, 3, 1, 2),

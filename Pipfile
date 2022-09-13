@@ -7,6 +7,10 @@ name = "pypi"
 flask = "*"
 pymysql = "*"
 flask-bcrypt = "*"
+pandas = "*"
+openpyxl = "*"
+sqlalchemy = "*"
+tqdm = "*"
 
 [dev-packages]
 pylint = "*"

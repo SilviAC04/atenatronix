@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}
+    AtenaHome
+{% endblock %}
+
+{% block content %}
+    <h1 class="text-center">Bienvenido a Atenatronix Unlimited</h1>
+    <!-- class="table" width="100%" -->
+    <!-- table table-striped table-inverse table-responsive -->
+    
+    <table id="myTable" class="table table-striped table-inverse table-responsive" width="100%">
+        <thead class="thead-inverse">
+            <tr>
+                <th>Id</th>
+                <th>Categoría</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for this in this_products %}
+                <tr>
+                    <td scope="row">{{this.id}}</td>
+                    <td>{{this.categoria}}</td>
+                    <td>{{this.descripcion}}</td>
+                    <td>{{this.precio}}</td>
+                    <td><a href="/comprar-{{this.id}}">Comprar</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+    </table>
+
+{% endblock %}

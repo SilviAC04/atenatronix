@@ -4,23 +4,76 @@
 {% endblock %}
 
 {% block content %}
-<!-- Sidebar -->
-<div class="d-flex flex-row">
-    <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark">
-        <ul class="nav nav-pills flex-column mb-auto">
-            <li class="nav-item">
-                <a href="#" class="nav-link text-white" aria-current="page">Dashboard</a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link text-white" aria-current="page">Compras</a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link text-white" aria-current="page">Clientes</a>
-            </li>
-        </ul>
-    </div>
-    <div class="d-flex flex-column flex-grow">
-        <h3 class="text-start p-3">Bienvenido {{this_user.first_name}}</h2>
+
+<div class="container-fluid">
+    <div class="row flex-nowrap">
+        <div class="col-auto col-md-2 col-xl-2 px-sm-2 px-0 bg-dark">
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                <div class="dropdown pb-4">
+                    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30" class="rounded-circle">
+                        <span class="d-none d-sm-inline mx-1">{{this_user.first_name}}</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                        {% if this_user_type.description=="vendedor" %}
+                            <li><a class="dropdown-item" href="#">Nueva Oferta</a></li>
+                            <li><a class="dropdown-item" href="#">Nuevo Producto</a></li>
+                        {% endif %}
+                        <li><a class="dropdown-item" href="#">Mi Perfil</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="/logout">Salir</a></li>
+                    </ul>
+                </div>
+                <p>Rol: {{this_user_type.description}}</p>
+                <ul class="nav nav-pills flex-column mb-auto">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-white" aria-current="page">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-white" aria-current="page">Compras</a>
+                    </li>
+                    {% if this_user_type.description=="vendedor" %}    
+                        <li class="nav-item">
+                            <a href="#" class="nav-link text-white" aria-current="page">Clientes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link text-white" aria-current="page">Clientes</a>
+                        </li>
+                    {% endif %}
+                </ul>
+                
+            </div>
+        </div>
+        <div class="col py-3">
+            <h4>Bienvenido {{this_user.first_name}} a tu Dashboard</h4>
+            {% block cuadro %}
+                
+            {% endblock %}
+        </div>
     </div>
 </div>
+
+<!-- Sidebar
+<div class="container-fluid h-100">
+    <div class="row h-100">
+        <div class="col-4 hidden-md-down text-white bg-dark">
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white" aria-current="page">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white" aria-current="page">Compras</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white" aria-current="page">Clientes</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-10 col-sm-10 col-md-10 col-lg-8 col-xl-8">
+            <h3 class="text-start p-3">Bienvenido {{this_user.first_name}}</h2>
+        </div>
+    </div>
+</div> -->
 {% endblock %}

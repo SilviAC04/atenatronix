@@ -1,6 +1,7 @@
 from flask_app import app
 from flask import render_template, redirect, session, request, flash
 from flask_app.models.user import User
+from flask_app.models.type_of_user import Type_of_user
 from flask_bcrypt import Bcrypt
 
 bcrypt = Bcrypt(app)
@@ -57,7 +58,8 @@ def show_dashboard():
         "id":session["user_id"]
     }
     this_user = User.get_by_id(data)
-    return render_template("dashboard.html", this_user=this_user)
+    this_user_type = Type_of_user.get_by_id({"id": this_user.user_type_id})
+    return render_template("dashboard.html", this_user=this_user, this_user_type=this_user_type)
 
 @app.route('/logout')
 def logout():
