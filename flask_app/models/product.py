@@ -46,6 +46,19 @@ class Product:
         #     products.append(cls(row))
         return results
     
+    @classmethod
+    def get_products_in_order(cls,data):
+        query = """
+        select products.id, products.descripcion, products.precio, users_has_products.cantidad from products
+        left join users_has_products on users_has_products.product_id = products.id
+        left join  users on users.id = users_has_products.user_id
+        left join compras on compras.id = users_has_products.compra_id
+        where user_id = %(user_id)s
+        and compras.id = %(compra_id)s;
+        """
+        results = connectToMySQL(cls.db).query_db(query,data)
+        print(results)
+        return results
     # @classmethod
     # def get_by_email(cls,data):
     #     query = "SELECT * FROM users WHERE email = %(email)s;"

@@ -1,0 +1,29 @@
+{% extends 'dashboard.html' %}
+{% block title %}
+    Mis Compras
+{% endblock %}
+
+{% block cuadro %}
+    <div class="col-md-9 col-lg-8 align-content-md-start">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Descripcion</th>
+                    <th>Total</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for buy in all_buys %}    
+                    <tr>
+                        <td scope="row">{{buy.id}}</td>
+                        <td>{{buy.descripcion}}</td>
+                        <td>{{buy.total}}</td>
+                        <td><a href="/shopping/{{buy.id}}">Ver Detalle</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

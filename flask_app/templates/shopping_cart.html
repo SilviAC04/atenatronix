@@ -1,0 +1,42 @@
+{% extends 'dashboard.html' %}
+{% block title %}
+    Ingresar Producto en Carro de Compra
+{% endblock %}
+
+{% block cuadro %}
+    <div class="col-md-9 col-lg-8 align-content-md-start">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id Producto</th>
+                    <th>Descripcion</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in this_buys %}    
+                    <tr>
+                        <td scope="row">{{item.id}}</td>
+                        <td>{{item.descripcion}}</td>
+                        <td>{{item.cantidad}}</td>
+                        <td>{{item.precio}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="d-grid">
+            <h3 class="text-center">Total {{datos_compra.total}}</h3>
+        </div>
+        <div class="col-md-4 col-lg-3 align-content-lg-start">
+            <form action="/finish_buy" method="post">
+                <div class="d-grid mt-2">
+                    <button class="btn btn-sm btn-primary btn-login text-uppercase fw-bold mb-2" type="submit">Checkout</button>
+                </div>
+                <div class="d-grid mt-2">
+                    <a href="/products" class="btn btn-sm btn-info btn-login text-uppercase fw-bold mb-2">Continuar Comprando</a>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

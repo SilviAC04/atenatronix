@@ -22,12 +22,14 @@ class User:
         self.updated_at = data["updated_at"]
         self.orders = []
         self.offers = []
+
     
     @classmethod
     def save(cls,data):
         query = "INSERT INTO users (first_name,last_name,email,password, birthday, cedula_ruc, user_type_id, empresa_id, direccion_id) VALUES(%(first_name)s,%(last_name)s,%(email)s,%(password)s, %(birthday)s, %(cedula_ruc)s, %(user_type_id)s, %(empresa_id)s, %(direccion_id)s)"
         return connectToMySQL(cls.db).query_db(query,data)
     
+
     @classmethod
     def get_all(cls):
         query = "SELECT * FROM users;"
@@ -36,6 +38,7 @@ class User:
         for row in results:
             users.append( cls(row))
         return users
+
     
     @classmethod
     def get_by_email(cls,data):
@@ -46,12 +49,20 @@ class User:
             return False
         return cls(results[0])
 
+
     @classmethod
     def get_by_id(cls,data):
         query = "SELECT * FROM users WHERE id = %(id)s;"
         results = connectToMySQL(cls.db).query_db(query,data)
         print(results)
         return cls(results[0])
+    
+
+    @classmethod
+    def buys_product(cls, data):
+        query = "insert into users_has_products (user_id, product_id, cantidad, compra_id, oferta_id) values (%(user_id)s, %(product_id)s, %(cantidad)s, %(compra_id)s, %(oferta_id)s)"
+        return connectToMySQL(cls.db).query_db(query, data)
+
 
     @staticmethod
     def validate_register(user):

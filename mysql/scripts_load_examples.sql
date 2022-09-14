@@ -63,6 +63,9 @@ select * from users_has_products;
 insert into users_has_products (user_id, product_id, cantidad, compra_id) 
 values (2, 1, 2, 1),(2,2,1,1), (1,3,10,2);
 
+select * from ofertas;
+delete from ofertas where id = 2;
+insert into ofertas (descripcion, vendida, total) values ('SIN OFERTA', 'NO APLICA', 0);
 select * from users
 left join users_has_products on users.id = users_has_products.user_id
 left join  products on products.id = user_has_products.product_id;
@@ -70,7 +73,27 @@ left join  products on products.id = user_has_products.product_id;
 select * from products
 left join users_has_products on users_has_products.product_id = products.id
 left join  users on users.id = users_has_products.user_id
-where user_id = 2;
+left join compras on compras.id = users_has_products.compra_id
+where user_id = 1
+and compras.id = 9;
+
+select products.id, products.descripcion, products.precio, users_has_products.cantidad from products
+left join users_has_products on users_has_products.product_id = products.id
+left join  users on users.id = users_has_products.user_id
+left join compras on compras.id = users_has_products.compra_id
+where user_id = 1
+and compras.id = 9;
+
+select * from compras;
+delete from compras where id =8;
+select total from compras;
+select * from users_has_products;
+delete from users_has_products where user_id=1;
+
+select compras.id, compras.descripcion, compras.total from compras
+left join users_has_products on compras.id = users_has_products.compra_id
+left join users on users_has_products.user_id = users.id
+where users.id = 3;
 
 
  

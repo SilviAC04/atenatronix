@@ -15,7 +15,7 @@
                         <span class="d-none d-sm-inline mx-1">{{this_user.first_name}}</span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-                        {% if this_user_type.description=="vendedor" %}
+                        {% if this_user_type.description=="Vendedor" %}
                             <li><a class="dropdown-item" href="#">Nueva Oferta</a></li>
                             <li><a class="dropdown-item" href="#">Nuevo Producto</a></li>
                         {% endif %}
@@ -32,9 +32,9 @@
                         <a href="#" class="nav-link text-white" aria-current="page">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link text-white" aria-current="page">Compras</a>
+                        <a href="/shopping" class="nav-link text-white" aria-current="page">Compras</a>
                     </li>
-                    {% if this_user_type.description=="vendedor" %}    
+                    {% if this_user_type.description=="Vendedor" %}    
                         <li class="nav-item">
                             <a href="#" class="nav-link text-white" aria-current="page">Clientes</a>
                         </li>
